@@ -57,7 +57,7 @@ if (obj && ua.includes("Locket")) {
             feature_set: [
                 {
                     title: "NGHIA ĐZ",
-                    body: "Zalo 0786210207"
+                    body: "Zalo "
                 }
             ],
             primary_button_title: "Xong",
