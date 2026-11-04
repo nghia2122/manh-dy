@@ -3,9 +3,10 @@
 // Endpoint: firebaseremoteconfig.googleapis.com
 
 var ua = $request.headers["User-Agent"] || $request.headers["user-agent"] || "";
-var obj = JSON.parse($response.body);
+var obj;
+try { obj = JSON.parse($response.body); } catch (e) { obj = null; }
 
-if (ua.includes("Locket")) {
+if (obj && ua.includes("Locket")) {
     obj.Attention = "Chúc mừng bạn! Vui lòng không bán hoặc chia sẻ cho người khác!";
     obj.entries = obj.entries || {};
 
@@ -49,6 +50,10 @@ if (ua.includes("Locket")) {
             tag_gradient: true,
             tag_style: "gold_gradient",
             title: "Đã Kich Hoạt 💛",
+            image_url: "https://i.postimg.cc/MppWGGkn/f1.png",
+            image: "https://i.postimg.cc/MppWGGkn/f1.png",
+            imageUrl: "https://i.postimg.cc/MppWGGkn/f1.png",
+            media_url: "https://i.postimg.cc/MppWGGkn/f1.png",
             feature_set: [
                 {
                     title: "NGHIA ĐZ",
@@ -56,15 +61,14 @@ if (ua.includes("Locket")) {
                 }
             ],
             primary_button_title: "Xong",
-            campaign: "locket_gold_welcome_v3",
+            campaign: "locket_gold_welcome_v4",
             start_at: "2020-01-01T00:00:00",
             end_at: "2099-12-31T23:59:59",
             use_local_time_zone: true
         }),
         android_subscribe_gold_button_enabled: "false",
         profile_badge_visible: "true",
-        lunar_new_year_app_icon_enabled: "true",
-        
+        lunar_new_year_app_icon_enabled: "true"
     });
 
     // ============================================================
@@ -275,14 +279,14 @@ if (ua.includes("Locket")) {
     // ============================================================
     Object.assign(obj.entries, {
         widget_frame_event_max_images: "5",
-        android_widget_frame_event_enabled: "false",
+        android_widget_frame_event_enabled: "true",
         widget_badge_enabled: "true",
         widget_badge_v2: "true",
         widget_stale_state_enabled: "false",
         widget_last_sent_indicator: "false",
         widget_sync_token_reload_mode: "clearTokenNever",
         widget_frame_event: JSON.stringify({
-            uid: "midautumn_2026",            
+            uid: "midautumn_2026",
             url: "https://i.postimg.cc/fbY7MGdR/hlw.png",
             use_local_time_zone: true,
             placement: "below",
@@ -406,10 +410,11 @@ if (ua.includes("Locket")) {
             {
                 section: "🎨 Decorative by NGHIA",
                 items: [
-                    { overlay_id: "caption:NGHIA", source: "remote", caption: { background: { colors: ["#B8E7FF", "#A8F5D0", "#DCCBFF"] }, max_lines: 1, text: "💻 NGHIA CUTE", text_color: "#183153", type: "static_content" } },
-                    { overlay_id: "caption:cu", source: "remote", caption: { background: { colors: ["#FFD6A5", "#FFF1A8", "#FFC4D6"] }, max_lines: 1, text: "Đánh naruto gà vãi lol ", text_color: "#633B24", type: "static_content" } },
-                    { overlay_id: "caption:tuat", source: "remote", caption: { background: { colors: ["#2C1A0E", "#5D4037", "#D7A86E"] }, icon: { data: "🐕", type: "emoji" }, max_lines: 1, text: "DUY", text_color: "#FFFFFFE6", type: "static_content" } },
-                    { overlay_id: "caption:du_an_ma", source: "remote", caption: { background: { colors: ["#263238", "#455A64"] }, icon: { data: "😎", type: "emoji" }, max_lines: 1, text: "1 chai STING ", text_color: "#FFFFFFE6", type: "static_content" } }
+                    { overlay_id: "caption:nghia_cute", source: "remote", caption: { background: { colors: ["#B8E7FF", "#A8F5D0", "#DCCBFF"] }, max_lines: 1, text: "💻 NGHĨA CUTE ", text_color: "#183153", type: "static_content" } },
+                    { overlay_id: "caption:xhuy", source: "remote", caption: { background: { colors: ["#FFD6A5", "#FFF1A8", "#FFC4D6"] }, max_lines: 1, text: "NGHẼO 🐎", text_color: "#633B24", type: "static_content" } },
+                    { overlay_id: "caption:phung", source: "remote", caption: { background: { colors: ["#2C1A0E", "#5D4037", "#D7A86E"] }, icon: { data: "🐕", type: "emoji" }, max_lines: 1, text: "XHY DA DEN", text_color: "#FFFFFFE6", type: "static_content" } },
+                    { overlay_id: "caption:t_huy", source: "remote", caption: { background: { colors: ["#2E7D32", "#66BB6A"] }, icon: { data: "🐍", type: "emoji" }, max_lines: 1, text: "Phụng", localized_text: { en: "Snake Vibes", vn: "Chất rắn" }, text_color: "#FFFFFFE6", type: "static_content" } },
+                    { overlay_id: "caption:du_an_ma", source: "remote", caption: { background: { colors: ["#263238", "#455A64"] }, icon: { data: "👻", type: "emoji" }, max_lines: 1, text: "dự án ma", text_color: "#FFFFFFE6", type: "static_content" } }
                 ]
             },
             {
@@ -640,4 +645,4 @@ if (ua.includes("Locket")) {
     });
 }
 
-$done({ body: JSON.stringify(obj) });
+$done(obj ? { body: JSON.stringify(obj) } : {});
