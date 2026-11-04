@@ -1,4 +1,4 @@
-﻿// ============================================================
+// ============================================================
 // Locket Remote Config Rewrite
 // Endpoint: firebaseremoteconfig.googleapis.com
 
@@ -275,7 +275,7 @@ if (ua.includes("Locket")) {
     // ============================================================
     Object.assign(obj.entries, {
         widget_frame_event_max_images: "5",
-        android_widget_frame_event_enabled: "true",
+        android_widget_frame_event_enabled: "false",
         widget_badge_enabled: "true",
         widget_badge_v2: "true",
         widget_stale_state_enabled: "false",
